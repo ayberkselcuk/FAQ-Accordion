@@ -5,7 +5,7 @@ import Accordion from "../../components/Accordion";
 export default function Home() {
   return (
     <div>
-      <div><Accordion /></div>
+      <div className="font-black border-black border-solid my-[300px] mx-[700px]"><Accordion /></div>
     </div>
   );
 }
