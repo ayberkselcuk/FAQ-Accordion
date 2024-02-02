@@ -1,46 +1,47 @@
-'use client'
-import React, { useState } from "react";
-import AccordionUI from "./AccordionUI";
+// components/Accordion.tsx
+import React, { useState } from 'react';
+
+const questionsAndAnswers = [
+    { question: 'Question 1', answer: 'Answer to question 1...' },
+    { question: 'Question 2', answer: 'Answer to question 2...' },
+    { question: 'Question 3', answer: 'Answer to question 3...' },
+];
 
 const Accordion = () => {
-    const [Index, setIndex] = useState(false);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-    const data = [
-        {
-            id: 1,
-            question: "What is Next.Js ?",
-            answer: "The React Framework for Production",
-        },
-        {
-            id: 2,
-            question: "What is Tailwindcss ?",
-            answer:
-                "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
-        },
-        {
-            id: 3,
-            question: "What is art ?",
-            answer:
-                " a visual object or experience consciously created through an expression of skill or imagination.",
-        },
-    ];
+    const toggleAnswer = (index: number) => {
+        setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    };
 
     return (
-        <section className="container">
-            <div className="flex flex-col justify-center items-center md:mt-32 md:mx-60 p-10 rounded-xl h-auto py-20 bg-gray-50">
-                {data.map((data) => {
-                    return (
-                        <AccordionUI
-                            title={data.question}
-                            Id={data.id}
-                            children={data.answer}
-                            Index={Index}
-                            setIndex={setIndex}
-                        ></AccordionUI>
-                    );
-                })}
+        <div>
+            <div className="border-4 border-solid border-black p-4 rounded-lg shadow-md mt-4">
+                <div>
+                    <h2 className="text-xl font-semibold mb-2">Frequently Asked Questions</h2>
+                </div>
+                <div>
+                    {questionsAndAnswers.map((qa, index) => (
+                        <div key={index} className="mb-4">
+                            <div
+                                className="flex justify-between items-center cursor-pointer"
+                                onClick={() => toggleAnswer(index)}
+                            >
+                                <h3 className="text-lg font-semibold mb-1">{qa.question}</h3>
+                                <span>{openIndex === index ? '-' : '+'}</span>
+                            </div>
+                            {openIndex === index && (
+                                <div className="mt-2">
+                                    <p>{qa.answer}</p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
-        </section>
+        </div>
     );
 };
+
 export default Accordion;
+hh
