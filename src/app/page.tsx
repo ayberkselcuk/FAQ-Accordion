@@ -1,11 +1,14 @@
 'use client'
-import Image from "next/image";
-import Accordion from "../../components/Accordion";
+import FAQ from "../components/FAQ";
 
-export default function Home() {
+function App() {
   return (
-    <div>
-      <div className="font-black border-black border-solid my-[300px] mx-[700px]"><Accordion /></div>
+    <div className="w-full bg-blue-500 h-screen px-60 py-40 bg-blue">
+      <div className="p-4">
+        <FAQ />
+      </div>
     </div>
   );
 }
+
+export default App;
